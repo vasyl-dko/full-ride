@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import universities from './data/universities.json'
 
+// ─── Config ────────────────────────────────────────────────────────
+// Update this once you've pushed to GitHub:
+const GITHUB_URL = 'https://github.com/vasyl-dko/full-ride'
+
 // ─── Utilities ────────────────────────────────────────────────────
 
 const FLAG_MAP = {
@@ -83,6 +87,22 @@ function formatNum(n) {
   return n.toString()
 }
 
+// Derives scholarship classification from existing data fields —
+// no JSON changes needed.
+function getScholarshipType(uni) {
+  if (uni.merit_only) return 'merit'
+  if (['Switzerland', 'Germany'].includes(uni.country)) return 'low_tuition'
+  if (uni.admitted_full_ride !== null && uni.admitted_full_ride > 0) return 'merit_need'
+  return 'need'
+}
+
+const TYPE_META = {
+  merit:       { label: 'Merit',        color: '#C9A84C' },
+  need:        { label: 'Need-Based',   color: '#58A6FF' },
+  merit_need:  { label: 'Merit + Need', color: '#BC8CFF' },
+  low_tuition: { label: 'Low Tuition',  color: '#3FB950' },
+}
+
 // ─── Hero ──────────────────────────────────────────────────────────
 
 function Hero() {
@@ -118,6 +138,85 @@ function Hero() {
   )
 }
 
+// ─── Disclaimer ────────────────────────────────────────────────────
+
+function Disclaimer() {
+  return (
+    <div className="disclaimer">
+      <span className="disclaimer-icon">⚠️</span>
+      <div className="disclaimer-text">
+        <strong>Sample Project — Approximate Data.</strong>{' '}
+        All figures are publicly sourced estimates from official university websites, QS/THE rankings,
+        and published financial aid reports. Numbers may be outdated or incomplete.
+        Always verify with the official university or scholarship programme before applying.
+      </div>
+    </div>
+  )
+}
+
+// ─── Footer ────────────────────────────────────────────────────────
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-inner">
+
+        <div className="footer-heart">
+          <span className="footer-heart-icon">💛</span>
+          <p>Built with love by a son of a single mom who studied on a full ride.</p>
+        </div>
+
+        <div className="footer-divider" />
+
+        <div className="footer-about">
+          <h4 className="footer-heading">About This Project</h4>
+          <p>
+            This is a <strong>prototype</strong> built to explore the idea of a centralised,
+            searchable intelligence tool for merit and full-ride scholarships at the world's
+            most selective universities. All data is hand-curated from public sources and is
+            approximate — the real version would need live API integrations, automated data
+            pipelines, and regular audits.
+          </p>
+          <p style={{ marginTop: 10 }}>
+            If you are a current undergraduate, a prospective student, or a developer who has
+            felt this problem firsthand and wants to build this properly — I would love to hear
+            from you. I am <strong>happy to transfer this project for free</strong> to whoever
+            is willing to take it seriously. Making full-ride scholarship information genuinely
+            accessible could change trajectories for a lot of people.
+          </p>
+        </div>
+
+        <div className="footer-links">
+          <a className="footer-link footer-link-email" href="mailto:vdavydko@gmail.com">
+            ✉️ vdavydko@gmail.com
+          </a>
+          {GITHUB_URL && (
+            <a
+              className="footer-link footer-link-github"
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              View on GitHub
+            </a>
+          )}
+        </div>
+
+        <div className="footer-copy">
+          <p>
+            This project is open-source and free to use, fork, and build upon.
+            If you take it further, a mention would be lovely — but is not required.
+          </p>
+        </div>
+
+      </div>
+    </footer>
+  )
+}
+
 // ─── Filter Bar ────────────────────────────────────────────────────
 
 function FilterBar({ filters, onChange }) {
@@ -140,11 +239,11 @@ function FilterBar({ filters, onChange }) {
           </div>
         </div>
 
-        {/* Type */}
+        {/* Classification */}
         <div className="filter-group">
-          <label className="filter-label">Type</label>
+          <label className="filter-label">Classification</label>
           <div className="filter-pills">
-            {['All', 'Full Ride Only', 'Partial Available'].map(t => (
+            {['All', 'Merit', 'Need-Based', 'Merit + Need', 'Low Tuition'].map(t => (
               <button
                 key={t}
                 className={'pill' + (filters.type === t ? ' pill-active' : '')}
@@ -156,16 +255,10 @@ function FilterBar({ filters, onChange }) {
           </div>
         </div>
 
-        {/* Toggles */}
+        {/* Focus toggles */}
         <div className="filter-group">
           <label className="filter-label">Focus</label>
           <div className="filter-pills">
-            <button
-              className={'pill' + (filters.meritOnly ? ' pill-active' : '')}
-              onClick={() => onChange('meritOnly', !filters.meritOnly)}
-            >
-              Merit Only
-            </button>
             <button
               className={'pill' + (filters.olympiadOnly ? ' pill-active' : '')}
               onClick={() => onChange('olympiadOnly', !filters.olympiadOnly)}
@@ -276,6 +369,20 @@ function Funnel({ uni }) {
   )
 }
 
+// ─── Classification Badge ──────────────────────────────────────────
+
+function ClassificationBadge({ type, large }) {
+  const meta = TYPE_META[type] || TYPE_META.need
+  return (
+    <span
+      className={'type-badge' + (large ? ' type-badge-lg' : '')}
+      style={{ '--badge-color': meta.color }}
+    >
+      {meta.label}
+    </span>
+  )
+}
+
 // ─── University Card ───────────────────────────────────────────────
 
 function UniversityCard({ uni, index, onSelect }) {
@@ -294,7 +401,7 @@ function UniversityCard({ uni, index, onSelect }) {
             <span className="card-country">{uni.country}</span>
           </div>
         </div>
-        {uni.merit_only && <span className="merit-badge">Merit Only</span>}
+        <ClassificationBadge type={getScholarshipType(uni)} />
       </div>
 
       {/* Rates */}
@@ -515,7 +622,7 @@ function Modal({ uni, onClose }) {
               {uni.country} · {uni.region}
             </span>
           </div>
-          {uni.merit_only && <span className="merit-badge">Merit Only</span>}
+          <ClassificationBadge type={getScholarshipType(uni)} large />
         </div>
 
         {/* Body */}
@@ -561,7 +668,6 @@ export default function App() {
   const [filters, setFilters] = useState({
     region: 'All',
     type: 'All',
-    meritOnly: false,
     olympiadOnly: false,
     minGpa: 4.0,
   })
@@ -569,11 +675,15 @@ export default function App() {
   const [filterKey, setFilterKey] = useState(0)
 
   const filtered = useMemo(() => {
+    const TYPE_FILTER_MAP = {
+      'Merit':       'merit',
+      'Need-Based':  'need',
+      'Merit + Need':'merit_need',
+      'Low Tuition': 'low_tuition',
+    }
     return universities.filter(u => {
       if (filters.region !== 'All' && u.region !== filters.region) return false
-      if (filters.type === 'Full Ride Only' && u.full_ride_rate_of_admitted === null) return false
-      if (filters.type === 'Partial Available' && u.admitted_partial_scholarship === 0) return false
-      if (filters.meritOnly && !u.merit_only) return false
+      if (filters.type !== 'All' && getScholarshipType(u) !== TYPE_FILTER_MAP[filters.type]) return false
       if (filters.olympiadOnly && (!u.olympiad_bonus || u.olympiad_bonus.length === 0)) return false
       if (u.min_gpa > filters.minGpa) return false
       return true
@@ -590,6 +700,7 @@ export default function App() {
   return (
     <div className="app">
       <Hero />
+      <Disclaimer />
       <div className="sticky-bar">
         <FilterBar filters={filters} onChange={onChange} />
         <StatsBar universities={filtered} />
@@ -601,6 +712,7 @@ export default function App() {
           filterKey={filterKey}
         />
       </main>
+      <Footer />
       {selectedUni && (
         <Modal uni={selectedUni} onClose={() => setSelectedUni(null)} />
       )}

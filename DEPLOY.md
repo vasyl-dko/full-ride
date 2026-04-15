@@ -20,7 +20,7 @@ git commit -m "initial commit"
 
 ```bash
 # Create a new public repo at github.com named: full-ride
-git remote add origin https://github.com/YOUR_USERNAME/full-ride.git
+git remote add origin https://github.com/vasyl-dko/full-ride.git
 git branch -M main
 git push -u origin main
 ```
