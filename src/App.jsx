@@ -638,6 +638,28 @@ function Modal({ uni, onClose }) {
     return () => { document.body.style.overflow = prev }
   }, [])
 
+  // Inject per-university JSON-LD structured data for SEO
+  useEffect(() => {
+    const id = 'uni-jsonld'
+    let el = document.getElementById(id)
+    if (!el) {
+      el = document.createElement('script')
+      el.id = id
+      el.type = 'application/ld+json'
+      document.head.appendChild(el)
+    }
+    el.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'EducationalOrganization',
+      'name': uni.name,
+      'url': uni.admissions_url || undefined,
+      'email': uni.admissions_email || undefined,
+      'description': uni.notes,
+      'address': { '@type': 'PostalAddress', 'addressCountry': uni.country },
+    })
+    return () => { el && el.remove() }
+  }, [uni])
+
   const handleBackdrop = e => {
     if (e.target === backdropRef.current) onClose()
   }
@@ -735,6 +757,37 @@ function Modal({ uni, onClose }) {
           <div className="modal-notes">
             <p>{uni.notes}</p>
           </div>
+
+          {/* Admissions contact */}
+          {(uni.admissions_url || uni.admissions_email) && (
+            <div className="modal-admissions">
+              <h3 className="modal-admissions-title">Apply &amp; Contact</h3>
+              <div className="modal-admissions-links">
+                {uni.admissions_url && (
+                  <a
+                    className="modal-admissions-link modal-admissions-link-primary"
+                    href={uni.admissions_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${uni.name} admissions website (opens in new tab)`}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Admissions Website
+                  </a>
+                )}
+                {uni.admissions_email && (
+                  <a
+                    className="modal-admissions-link modal-admissions-link-email"
+                    href={`mailto:${uni.admissions_email}`}
+                    aria-label={`Email ${uni.name} admissions at ${uni.admissions_email}`}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    {uni.admissions_email}
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Last verified */}
           {uni.last_verified && (
@@ -881,6 +934,7 @@ export default function App() {
         <StatsBar universities={filtered} />
       </div>
       <main className="main" id="main-content">
+        <h2 className="sr-only">University Scholarship Directory</h2>
         <UniversityGrid
           universities={filtered}
           onSelect={handleSelect}

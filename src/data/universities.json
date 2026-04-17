@@ -20,7 +20,8 @@
     "citizenship_restrictions": "All nationalities eligible for admission; Abu Dhabi government full scholarship (tuition + housing + living stipend) reserved for UAE nationals and children of an Emirati parent. International students considered for merit-based and need-based financial aid.",
     "scholarship_deadline": "November 1 (Early Decision)",
     "renewal_condition": "Maintain good academic standing; need re-assessed annually for need-based components",
-    "data_note": "⚠️ Previously this entry incorrectly stated every admitted student receives a full ride. Corrected per NYUAD Financial Aid Office and UAE government scholarship guidelines.",
+    "admissions_email": "nyuad.admissions@nyu.edu",
+    "admissions_url": "https://nyuad.nyu.edu",
     "last_verified": "2025-01",
     "notes": "NYUAD is one of the world's most selective institutions (~1% acceptance). The Abu Dhabi government funds comprehensive full scholarships — covering tuition, housing, meals, flights, and a stipend — exclusively for admitted UAE nationals and children of an Emirati parent. All other admitted students are evaluated for merit-based awards and additional need-based financial aid; support levels vary significantly. NYUAD does not charge standard tuition fees to any admitted student, but a universally guaranteed 'full ride' for all is not accurate. Source: NYUAD Financial Aid Office (financialaid.nyuad.nyu.edu)."
   },
@@ -44,6 +45,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Early Action); January 1 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "admissions@mit.edu",
+    "admissions_url": "https://mitadmissions.org",
+    "last_verified": "2025-01",
     "notes": "MIT offers no merit scholarships — all aid is need-based and meets 100% of demonstrated need. Approximately 58% of students receive some aid. Families earning under $140k typically pay nothing. Full-ride data is not tracked separately from need-based grants."
   },
   {
@@ -66,6 +70,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Restrictive Early Action); January 2 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "admission@stanford.edu",
+    "admissions_url": "https://admission.stanford.edu",
+    "last_verified": "2025-01",
     "notes": "Stanford meets 100% of demonstrated financial need for all admitted students. Families earning under $100k pay nothing; under $150k, no tuition. About 49% of students receive need-based grants. No merit scholarships exist — full-ride tracking is not applicable."
   },
   {
@@ -88,6 +95,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Restrictive Early Action); January 1 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "college@fas.harvard.edu",
+    "admissions_url": "https://college.harvard.edu/admissions",
+    "last_verified": "2025-01",
     "notes": "Harvard's financial aid program meets 100% of demonstrated need. Families earning under $85k pay nothing; under $150k, minimal contribution. About 53% of students receive Harvard grants averaging $53k/year. No merit scholarships — full-ride tracking is not applicable as a separate category."
   },
   {
@@ -110,6 +120,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Early Action); January 3 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "ugadmissions@caltech.edu",
+    "admissions_url": "https://www.admissions.caltech.edu",
+    "last_verified": "2025-01",
     "notes": "Caltech meets 100% of demonstrated financial need for all admitted students. About 54% of undergraduates receive need-based aid. The institute is particularly welcoming of olympiad medalists, who are heavily represented in the student body. No separate merit full-ride program exists."
   },
   {
@@ -132,6 +145,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Single-Choice Early Action); January 1 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "uaoffice@princeton.edu",
+    "admissions_url": "https://admission.princeton.edu",
+    "last_verified": "2025-01",
     "notes": "Princeton's financial aid program is one of the most generous in the US — it replaces all loans with grants. Families earning under $100k pay nothing. About 53% of students receive aid averaging $61k/year. No merit scholarships — the program is entirely need-based."
   },
   {
@@ -154,6 +170,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Restrictive Early Action); January 2 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "student.questions@yale.edu",
+    "admissions_url": "https://admissions.yale.edu",
+    "last_verified": "2025-01",
     "notes": "Yale meets 100% of demonstrated financial need with no loans. Families earning under $75k pay nothing. Approximately 53% of students receive financial aid averaging $60k/year. There is no separate merit scholarship program — financial aid tracking reflects need-based grants only."
   },
   {
@@ -176,6 +195,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Early Decision); January 1 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "ugrad-ask@columbia.edu",
+    "admissions_url": "https://undergrad.admissions.columbia.edu",
+    "last_verified": "2025-01",
     "notes": "Columbia meets 100% of demonstrated financial need for admitted US students with no loans. Families under $60k income typically pay nothing. About 53% of students receive need-based aid averaging $62k/year. No merit-based full-ride scholarships are offered."
   },
   {
@@ -198,6 +220,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Early Decision I); January 1 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "collegeadmissions@uchicago.edu",
+    "admissions_url": "https://collegeadmissions.uchicago.edu",
+    "last_verified": "2025-01",
     "notes": "UChicago meets 100% of demonstrated financial need with no loans. Families earning under $60k typically pay nothing through the No Barriers program. About 55% of students receive financial aid. The Collegiate Scholars Program also supports first-generation students. No separate merit full-ride program."
   },
   {
@@ -220,6 +245,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Early Decision); January 5 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "info@admissions.upenn.edu",
+    "admissions_url": "https://admissions.upenn.edu",
+    "last_verified": "2025-01",
     "notes": "Penn meets 100% of demonstrated financial need for admitted US students. Families earning under $65k typically pay nothing. About 46% of students receive need-based aid averaging $57k/year. Penn has no merit scholarships at the undergraduate level — all aid is need-based."
   },
   {
@@ -242,6 +270,9 @@
     "citizenship_restrictions": "Robertson Scholars open to US citizens; need-based aid for all admitted US students",
     "scholarship_deadline": "October 15 (Robertson Scholarship)",
     "renewal_condition": "Maintain 3.0 GPA and active participation in leadership programs (Robertson); satisfactory academic progress for need-based aid",
+    "admissions_email": "undergrad-admissions@duke.edu",
+    "admissions_url": "https://admissions.duke.edu",
+    "last_verified": "2025-01",
     "notes": "Duke's Robertson Scholars Leadership Program awards approximately 17 full-ride merit scholarships per year — covering tuition, room, board, and a leadership allowance, with exchange privileges at UNC Chapel Hill. Duke also meets 100% of demonstrated need for US students. Full-ride data reflects Robertson Scholars only."
   },
   {
@@ -264,6 +295,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Early Decision I); January 3 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "ug-admission@northwestern.edu",
+    "admissions_url": "https://admissions.northwestern.edu",
+    "last_verified": "2025-01",
     "notes": "Northwestern meets 100% of demonstrated financial need with no required loans. Families earning under $75k typically pay nothing. About 53% of students receive need-based aid. Northwestern does not offer merit-based full-ride scholarships at the undergraduate level."
   },
   {
@@ -286,6 +320,9 @@
     "citizenship_restrictions": "Need-blind for US citizens/PR; need-aware for international students",
     "scholarship_deadline": "November 1 (Early Decision); January 2 (Regular Decision)",
     "renewal_condition": "Maintain satisfactory academic progress and continued demonstrated financial need",
+    "admissions_email": "engage@admissions.cornell.edu",
+    "admissions_url": "https://admissions.cornell.edu",
+    "last_verified": "2025-01",
     "notes": "Cornell meets 100% of demonstrated financial need with no loans. Families earning under $75k typically pay nothing. About 53% of students receive need-based aid. Cornell hosts strong olympiad-aligned programs in chemistry and computing. No merit-based full-ride scholarships at undergraduate level."
   },
   {
@@ -308,6 +345,9 @@
     "citizenship_restrictions": "Hodson Trust open to US citizens and permanent residents; need-based aid available to all admitted US students",
     "scholarship_deadline": "November 1 (Early Decision); January 2 (Regular Decision)",
     "renewal_condition": "Maintain 3.0 GPA; demonstrate continued leadership and community engagement (Hodson); satisfactory progress for need-based aid",
+    "admissions_email": "gotojhu@jhu.edu",
+    "admissions_url": "https://apply.jhu.edu",
+    "last_verified": "2025-01",
     "notes": "The Hodson Trust-Gilman Scholarship at JHU awards approximately 12 full-ride merit scholarships per year to exceptional students in the sciences and humanities. JHU also meets 100% of demonstrated need for US students. The Bloomberg Distinguished Professorships further support research-focused undergraduates."
   },
   {
@@ -330,6 +370,9 @@
     "citizenship_restrictions": "Cal Grant and Blue and Gold Guarantee for CA residents; need-aware for out-of-state and international students",
     "scholarship_deadline": "November 30 (UC Application); March 2 (Cal Grant deadline)",
     "renewal_condition": "Maintain 2.0 GPA (Cal Grant); demonstrate continued financial need",
+    "admissions_email": "berkeleyinfo@berkeley.edu",
+    "admissions_url": "https://admissions.berkeley.edu",
+    "last_verified": "2025-01",
     "notes": "UC Berkeley's Blue and Gold Opportunity Plan covers all tuition and fees for California residents with family income under $110k. The California Grant program provides additional aid. No formal merit-based full-ride scholarship for undergraduates — aid is primarily need-based. Berkeley's EECS and CS programs attract significant olympiad talent globally."
   },
   {
@@ -352,6 +395,9 @@
     "citizenship_restrictions": "Cal Grant and UCLA Promise for CA residents; need-aware for out-of-state and international students",
     "scholarship_deadline": "November 30 (UC Application); February 28 (scholarship priority deadline)",
     "renewal_condition": "Maintain 2.0 GPA (Cal Grant); demonstrate continued financial need",
+    "admissions_email": "ugadm@saonet.ucla.edu",
+    "admissions_url": "https://www.admissions.ucla.edu",
+    "last_verified": "2025-01",
     "notes": "UCLA's Promise covers tuition and fees for California residents with family income under $80k. The campus also awards over 4,000 scholarships annually through the UCLA Scholarship Resource Center. No universal merit-based full-ride — financial aid tracking reflects need-based grants primarily."
   },
   {
@@ -374,6 +420,9 @@
     "citizenship_restrictions": "UK/EU students eligible for government tuition loans; international students pay full fees (~£28,950–£37,510/year); Clarendon Fund and Reach Oxford Scholarships available",
     "scholarship_deadline": "October 15 (UCAS deadline for Oxford)",
     "renewal_condition": "Maintain satisfactory academic progress (Collections); good academic standing for scholarship holders",
+    "admissions_email": "studentconferences@admin.ox.ac.uk",
+    "admissions_url": "https://www.ox.ac.uk/admissions/undergraduate",
+    "last_verified": "2025-01",
     "notes": "Oxford offers the Reach Oxford Scholarship for international students from low-income countries and the Clarendon Fund for graduate students. At the undergraduate level, full-ride scholarships for international students are limited and highly competitive. Some individual colleges award their own bursaries. SAT range shown is for reference — Oxford strongly prefers A-levels (AAA*) or IB (38–40 points)."
   },
   {
@@ -396,6 +445,9 @@
     "citizenship_restrictions": "UK students eligible for government loans; Cambridge Bursary for UK low-income students; international students pay full fees (~£24,507–£59,583/year); limited international undergraduate scholarships",
     "scholarship_deadline": "October 15 (UCAS deadline for Cambridge)",
     "renewal_condition": "Maintain first-class or upper-second-class standing; satisfactory progress as determined by Director of Studies",
+    "admissions_email": "admissions@cam.ac.uk",
+    "admissions_url": "https://www.undergraduate.study.cam.ac.uk",
+    "last_verified": "2025-01",
     "notes": "Cambridge offers the Cambridge Bursary for UK undergraduates with low household income (up to £3,500/year non-repayable). International undergraduate scholarships are extremely limited. The Gates Cambridge Scholarship is graduate-only. Cambridge strongly recruits from olympiad programs — approximately 30% of admitted physics students have olympiad recognition. A-levels (A*A*A or A*A*A*) or IB (40–42) are the standard offer."
   },
   {
@@ -418,6 +470,9 @@
     "citizenship_restrictions": "Open to all nationalities; Swiss/EU students admitted via Swiss Matura; non-EU students take a competitive entrance exam (pass rate ~30%); tuition is ~CHF 730/semester regardless of nationality",
     "scholarship_deadline": "December 15 (ETH Zurich Excellence Scholarship — Master's only); Bachelor's scholarships via Swiss Government Excellence Scholarships",
     "renewal_condition": "Maintain excellent academic standing; complete required coursework on schedule",
+    "admissions_email": "admissionoffice@ethz.ch",
+    "admissions_url": "https://ethz.ch/en/studies/bachelor.html",
+    "last_verified": "2025-01",
     "notes": "ETH Zurich is effectively one of the most affordable world-class universities — tuition is CHF 730/semester (~$800) for all students regardless of nationality. Bachelor's admission for non-Swiss students requires passing a competitive entrance examination. The ETH Excellence Scholarship is graduate-level only. The Swiss Government Excellence Scholarships support some international undergrads. Full-ride tracking is not applicable given the minimal tuition."
   },
   {
@@ -440,6 +495,9 @@
     "citizenship_restrictions": "UK students pay regulated fees (£9,535/year); international students pay £35,100–£43,000/year; President's Undergraduate Scholarship available for top international applicants",
     "scholarship_deadline": "January 15 (UCAS); scholarship applications typically in February–March",
     "renewal_condition": "Maintain first-class performance; continue active academic engagement",
+    "admissions_email": "admissions.enquiries@imperial.ac.uk",
+    "admissions_url": "https://www.imperial.ac.uk/study/ug/",
+    "last_verified": "2025-01",
     "notes": "Imperial's President's Undergraduate Scholarship offers £10,000/year to a small cohort of outstanding international applicants, covering partial tuition. Full rides are not offered to undergraduates. Imperial is particularly strong for physics and computing olympiad participants. Full-ride tracking data is not publicly available."
   },
   {
@@ -462,6 +520,9 @@
     "citizenship_restrictions": "UK students pay regulated fees; international students pay £21,100–£35,000/year; UCL Global Undergraduate Scholarship and Denys Holland Scholarship available",
     "scholarship_deadline": "January 25 (UCAS); UCL scholarships awarded post-admission in April–May",
     "renewal_condition": "Maintain satisfactory academic progress; financial need may be reassessed annually",
+    "admissions_email": "study@ucl.ac.uk",
+    "admissions_url": "https://www.ucl.ac.uk/prospective-students/undergraduate",
+    "last_verified": "2025-01",
     "notes": "UCL offers the Denys Holland Scholarship (covers fees + maintenance) for UK students with financial need, and the UCL Global Undergraduate Scholarship (partial) for international students. Full-ride scholarships for international undergraduates are very limited. UCL's breadth of programs — from engineering to social sciences — attracts a diverse international cohort."
   },
   {
@@ -484,6 +545,9 @@
     "citizenship_restrictions": "UK students pay regulated fees; international students pay £23,856–£26,208/year; LSE Undergraduate Scholarship available for UK/EU students with financial need",
     "scholarship_deadline": "January 25 (UCAS); scholarship applications in February–March",
     "renewal_condition": "Maintain satisfactory academic progress; financial need reassessed annually",
+    "admissions_email": "ug.admissions@lse.ac.uk",
+    "admissions_url": "https://www.lse.ac.uk/study-at-lse/undergraduate",
+    "last_verified": "2025-01",
     "notes": "LSE offers the LSE Undergraduate Scholarship for UK students with financial hardship (covers fees + maintenance). International students have limited merit scholarship options. LSE is primarily relevant for social sciences, economics, law, and politics — not typical olympiad disciplines. Full-ride data for international undergraduates is not publicly tracked."
   },
   {
@@ -506,6 +570,9 @@
     "citizenship_restrictions": "Open to all nationalities; tuition is CHF 730/semester for all students; non-Swiss students may need to demonstrate academic equivalency",
     "scholarship_deadline": "January 15 (Bachelor's admission); EPFL Excellence Fellowships for Master's level only",
     "renewal_condition": "Maintain strong academic standing; complete required coursework within standard timeframe",
+    "admissions_email": "services.etudiants@epfl.ch",
+    "admissions_url": "https://www.epfl.ch/education/bachelor/",
+    "last_verified": "2025-01",
     "notes": "Like ETH Zurich, EPFL charges only CHF 730/semester (~$800) regardless of nationality — making it one of the most affordable world-class universities. The famous EPFL Excellence Fellowship targets Master's students only. At undergraduate level, some need-based aid is available via Swiss social support. Olympiad medalists are strongly valued, especially in math, physics, and computer science."
   },
   {
@@ -528,6 +595,9 @@
     "citizenship_restrictions": "EU students pay no tuition; non-EU students pay €160.50/semester in admin fees; Deutschlandstipendium and DAAD scholarships available for international students",
     "scholarship_deadline": "January 15 (winter semester application); Deutschlandstipendium deadline varies by faculty (typically April–May)",
     "renewal_condition": "Maintain satisfactory academic progress; Deutschlandstipendium recipients must demonstrate continued merit",
+    "admissions_email": "studium@tum.de",
+    "admissions_url": "https://www.tum.de/en/studies/application",
+    "last_verified": "2025-01",
     "notes": "TU Munich charges only a semester admin fee (~€161) — effectively free for all students including internationals. The Deutschlandstipendium offers €300/month (€3,600/year) to top students, funded jointly by private donors and the German government. DAAD provides additional support for international students. No formal full-ride tracking — the near-zero tuition makes cost largely a non-issue."
   },
   {
@@ -550,6 +620,9 @@
     "citizenship_restrictions": "ASEAN Scholarship open to ASEAN non-Singaporean nationals; Science & Technology Scholarship for international applicants; Singapore citizens pay subsidized fees",
     "scholarship_deadline": "February 28 (ASEAN Scholarship application)",
     "renewal_condition": "Maintain minimum CAP of 3.5/5.0; maintain good conduct; reside in designated student housing",
+    "admissions_email": "oamhead@nus.edu.sg",
+    "admissions_url": "https://nus.edu.sg/oam",
+    "last_verified": "2025-01",
     "notes": "NUS offers the ASEAN Undergraduate Scholarship — a full ride covering tuition, accommodation, meals, a monthly stipend, and an annual book allowance — to approximately 200–280 outstanding ASEAN nationals per year. The NUS Science & Technology Undergraduate Scholarship provides similar support for select international applicants. Olympiad medalists (especially IMO, IPhO, IOI) receive strong consideration."
   },
   {
@@ -572,6 +645,9 @@
     "citizenship_restrictions": "All Korean undergraduates receive full tuition waiver; international students eligible for KAIST International Student Scholarship (full tuition + stipend); service bond may apply for some Korean recipients",
     "scholarship_deadline": "September (Korean track); October–November (International track)",
     "renewal_condition": "Maintain minimum GPA of 2.0/4.3; Korean students may incur tuition if GPA drops below threshold; must complete military service obligation",
+    "admissions_email": "creative.adm@kaist.ac.kr",
+    "admissions_url": "http://admission.kaist.ac.kr/international",
+    "last_verified": "2025-01",
     "notes": "KAIST is one of the world's most generous academic programs — the Korean government funds full tuition for all admitted Korean undergraduate students. International students are eligible for the KAIST International Student Scholarship covering tuition plus a monthly stipend (~KRW 350,000). Approximately 90% of all admitted students receive some form of tuition waiver or full scholarship. KAIST has produced numerous IMO, IPhO, and IOI gold medalists."
   },
   {
@@ -594,6 +670,9 @@
     "citizenship_restrictions": "Admission for Chinese students via national gaokao (highly competitive by province); international students apply separately via Chinese Government Scholarship or Tsinghua Scholarship; most full-ride awards are for international applicants",
     "scholarship_deadline": "February 28 (International student application via CSC scholarship)",
     "renewal_condition": "Maintain GPA of 75/100 or higher; demonstrate continued academic engagement; conduct requirements apply",
+    "admissions_email": "admissions@tsinghua.edu.cn",
+    "admissions_url": "http://international.join-tsinghua.edu.cn",
+    "last_verified": "2025-01",
     "notes": "Tsinghua offers the Chinese Government Scholarship and Tsinghua University Scholarship to approximately 100 international undergraduate students per year — covering tuition, accommodation, and a monthly living stipend of CNY 2,500. Chinese students are admitted through gaokao scores (the most competitive scores in the country) and many receive need-based grants. Tsinghua is among the world's most dominant olympiad-producing institutions."
   },
   {
@@ -616,6 +695,9 @@
     "citizenship_restrictions": "Chinese students via gaokao; international students via Chinese Government Scholarship (CSC) or Peking University Scholarship; full-ride awards primarily for international students",
     "scholarship_deadline": "March 31 (CSC scholarship application for international students)",
     "renewal_condition": "Maintain GPA of 75/100 or above; good conduct record; language proficiency requirements for Chinese-taught programs",
+    "admissions_email": "study@pku.edu.cn",
+    "admissions_url": "https://www.isd.pku.edu.cn",
+    "last_verified": "2025-01",
     "notes": "Peking University offers approximately 90 full-ride scholarship places per year for international undergraduate students through the Chinese Government Scholarship and PKU's own scholarship program. Coverage includes tuition, on-campus accommodation, and CNY 2,500/month stipend. PKU is exceptionally strong in mathematics, physics, and computer science — disciplines with strong olympiad pipelines."
   },
   {
@@ -638,6 +720,9 @@
     "citizenship_restrictions": "Lester B. Pearson Scholarship open to international students only; domestic students eligible for University of Toronto Scholars Program and need-based OSAP",
     "scholarship_deadline": "November 7 (Lester B. Pearson Scholarship nomination deadline)",
     "renewal_condition": "Maintain minimum cGPA of 3.5/4.0; demonstrate continued leadership and community engagement",
+    "admissions_email": "utsc.admissions@utoronto.ca",
+    "admissions_url": "https://future.utoronto.ca",
+    "last_verified": "2025-01",
     "notes": "The Lester B. Pearson International Scholarship is one of Canada's most prestigious awards — covering tuition, books, incidentals, and full residence for four years for approximately 37 international students per year. Nominees must be nominated by their high school. The University of Toronto Scholars Program recognizes top domestic applicants. Pearson recipients are selected for academic excellence and demonstrated impact."
   },
   {
@@ -660,6 +745,9 @@
     "citizenship_restrictions": "Quebec residents pay lowest fees (~CAD 2,000/year); out-of-province Canadians pay ~CAD 9,000/year; international students pay ~CAD 20,000–55,000/year; limited international merit scholarships",
     "scholarship_deadline": "January 15 (Major Entrance Scholarship consideration — automatic with application)",
     "renewal_condition": "Maintain minimum CGPA of 3.5/4.0 for renewable scholarships; first-year performance determines continuation",
+    "admissions_email": "futurestudents@mcgill.ca",
+    "admissions_url": "https://www.mcgill.ca/undergraduate-admissions",
+    "last_verified": "2025-01",
     "notes": "McGill offers Major Entrance Scholarships (CAD $3,000–$10,000/year) and Mastercard Foundation Scholars Program (full ride for African students with demonstrated financial need). A confirmed full-ride merit scholarship program for general international applicants is not publicly documented — full-ride data is not tracked. McGill is most affordable for Quebec residents due to provincial tuition subsidies."
   },
   {
@@ -682,6 +770,9 @@
     "citizenship_restrictions": "Chancellor's Scholarship open to all nationalities; Melbourne International Undergraduate Scholarship available for international students; domestic students eligible for government HECS-HELP loans",
     "scholarship_deadline": "October 31 (Chancellor's Scholarship application)",
     "renewal_condition": "Maintain H1 (80%+) average; demonstrate continued academic excellence and leadership",
+    "admissions_email": "undergrad-admissions@unimelb.edu.au",
+    "admissions_url": "https://study.unimelb.edu.au",
+    "last_verified": "2025-01",
     "notes": "The University of Melbourne Chancellor's Scholarship awards approximately 50 full scholarships per year — covering tuition fees and an annual stipend of AUD $13,000 — to exceptional students demonstrating outstanding academic achievement and leadership. The Melbourne International Undergraduate Scholarship offers partial fee remission (~25–50%) to a larger cohort of international students. Australia's world-class university experience at a fraction of Ivy League costs."
   }
 ]
