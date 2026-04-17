@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import universities from './data/universities.json'
 
 // ─── Config ────────────────────────────────────────────────────────
@@ -87,13 +87,22 @@ function formatNum(n) {
   return n.toString()
 }
 
-// Derives scholarship classification from existing data fields —
-// no JSON changes needed.
+// Derives scholarship classification from existing data fields.
+// JSON entries can override with an explicit `scholarship_type` field.
 function getScholarshipType(uni) {
+  if (uni.scholarship_type) return uni.scholarship_type   // explicit override in JSON
   if (uni.merit_only) return 'merit'
   if (['Switzerland', 'Germany'].includes(uni.country)) return 'low_tuition'
   if (uni.admitted_full_ride !== null && uni.admitted_full_ride > 0) return 'merit_need'
   return 'need'
+}
+
+// Aid-type glossary definitions shown in tooltips
+const TYPE_GLOSSARY = {
+  merit:       'Awarded purely on academic/extracurricular achievement. No income information required.',
+  need:        'Awarded based on demonstrated financial need. Amount varies by family income.',
+  merit_need:  'University offers both merit-based scholarships and need-based grants. You may qualify for one or both.',
+  low_tuition: 'Tuition fees are minimal or near-zero for all students regardless of nationality. Additional living-cost support may be available.',
 }
 
 const TYPE_META = {
@@ -105,30 +114,41 @@ const TYPE_META = {
 
 // ─── Hero ──────────────────────────────────────────────────────────
 
-function Hero() {
+function Hero({ theme, onToggleTheme }) {
   return (
-    <section className="hero">
+    <section className="hero" aria-label="Full Ride — Scholarship Intelligence">
       <div className="hero-content">
-        <div className="hero-badge">Scholarship Intelligence</div>
+        <div className="hero-top-row">
+          <div className="hero-badge" aria-label="Sample project">Scholarship Intelligence · Sample Project</div>
+          <button
+            className="theme-toggle"
+            onClick={onToggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+        </div>
         <h1 className="hero-title">Full Ride</h1>
         <p className="hero-subtitle">
-          The definitive guide to merit scholarships and full-ride programs at the world's
-          most selective universities. Filter by region, selectivity, and olympiad recognition.
+          The definitive guide to merit scholarships, full-ride programs, and need-based aid
+          at the world's most selective universities. Filter by region, classification, and
+          olympiad recognition.
         </p>
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <span className="hero-stat-num">31</span>
+        <div className="hero-stats" role="list" aria-label="Site statistics">
+          <div className="hero-stat" role="listitem">
+            <span className="hero-stat-num" aria-label="30 plus universities">30+</span>
             <span className="hero-stat-label">Universities</span>
           </div>
-          <div className="hero-stat">
+          <div className="hero-stat" role="listitem">
             <span className="hero-stat-num">10</span>
             <span className="hero-stat-label">Countries</span>
           </div>
-          <div className="hero-stat">
-            <span className="hero-stat-num">9</span>
+          <div className="hero-stat" role="listitem">
+            <span className="hero-stat-num">8</span>
             <span className="hero-stat-label">Full-Ride Programs</span>
           </div>
-          <div className="hero-stat">
+          <div className="hero-stat" role="listitem">
             <span className="hero-stat-num">Free</span>
             <span className="hero-stat-label">Always</span>
           </div>
@@ -219,19 +239,63 @@ function Footer() {
 
 // ─── Filter Bar ────────────────────────────────────────────────────
 
-function FilterBar({ filters, onChange }) {
+function FilterBar({ filters, onChange, sortBy, onSortChange }) {
   return (
-    <div className="filter-bar">
+    <div className="filter-bar" role="search" aria-label="Filter and search universities">
       <div className="filter-bar-inner">
+
+        {/* Search */}
+        <div className="filter-group filter-group-search">
+          <label className="filter-label" htmlFor="uni-search">Search</label>
+          <div className="search-input-wrap">
+            <span className="search-icon" aria-hidden="true">🔍</span>
+            <input
+              id="uni-search"
+              type="search"
+              className="search-input"
+              placeholder="University name…"
+              value={filters.search}
+              onChange={e => onChange('search', e.target.value)}
+              aria-label="Search universities by name"
+            />
+            {filters.search && (
+              <button
+                className="search-clear"
+                onClick={() => onChange('search', '')}
+                aria-label="Clear search"
+              >✕</button>
+            )}
+          </div>
+        </div>
+
+        {/* Sort */}
+        <div className="filter-group">
+          <label className="filter-label" htmlFor="sort-select">Sort by</label>
+          <select
+            id="sort-select"
+            className="sort-select"
+            value={sortBy}
+            onChange={e => onSortChange(e.target.value)}
+            aria-label="Sort universities"
+          >
+            <option value="default">Default</option>
+            <option value="acceptance_asc">Acceptance Rate ↑</option>
+            <option value="acceptance_desc">Acceptance Rate ↓</option>
+            <option value="name_asc">Name A → Z</option>
+            <option value="name_desc">Name Z → A</option>
+          </select>
+        </div>
+
         {/* Region */}
         <div className="filter-group">
           <label className="filter-label">Region</label>
-          <div className="filter-pills">
+          <div className="filter-pills" role="group" aria-label="Filter by region">
             {['All', 'North America', 'Europe', 'Asia & Pacific', 'Middle East'].map(r => (
               <button
                 key={r}
                 className={'pill' + (filters.region === r ? ' pill-active' : '')}
                 onClick={() => onChange('region', r)}
+                aria-pressed={filters.region === r}
               >
                 {r}
               </button>
@@ -242,12 +306,13 @@ function FilterBar({ filters, onChange }) {
         {/* Classification */}
         <div className="filter-group">
           <label className="filter-label">Classification</label>
-          <div className="filter-pills">
+          <div className="filter-pills" role="group" aria-label="Filter by aid classification">
             {['All', 'Merit', 'Need-Based', 'Merit + Need', 'Low Tuition'].map(t => (
               <button
                 key={t}
                 className={'pill' + (filters.type === t ? ' pill-active' : '')}
                 onClick={() => onChange('type', t)}
+                aria-pressed={filters.type === t}
               >
                 {t}
               </button>
@@ -255,25 +320,29 @@ function FilterBar({ filters, onChange }) {
           </div>
         </div>
 
-        {/* Focus toggles */}
+        {/* Focus + GPA row */}
         <div className="filter-group">
           <label className="filter-label">Focus</label>
           <div className="filter-pills">
             <button
               className={'pill' + (filters.olympiadOnly ? ' pill-active' : '')}
               onClick={() => onChange('olympiadOnly', !filters.olympiadOnly)}
+              aria-pressed={filters.olympiadOnly}
             >
-              Olympiad Programs
+              🏆 Olympiad Programs
             </button>
           </div>
         </div>
 
         {/* GPA Slider */}
         <div className="filter-group">
-          <label className="filter-label">
-            My GPA: <strong>{filters.minGpa.toFixed(2)}</strong>
+          <label className="filter-label" htmlFor="gpa-slider">
+            My GPA:{' '}
+            <strong>{filters.minGpa.toFixed(2)}</strong>
+            <span className="filter-label-hint"> (4.0 scale)</span>
           </label>
           <input
+            id="gpa-slider"
             type="range"
             min="3.0"
             max="4.0"
@@ -281,12 +350,14 @@ function FilterBar({ filters, onChange }) {
             value={filters.minGpa}
             onChange={e => onChange('minGpa', parseFloat(e.target.value))}
             className="gpa-slider"
+            aria-label={`My GPA: ${filters.minGpa.toFixed(2)} out of 4.0`}
           />
           <div className="slider-labels">
             <span>3.0</span>
             <span>4.0</span>
           </div>
         </div>
+
       </div>
     </div>
   )
@@ -373,10 +444,14 @@ function Funnel({ uni }) {
 
 function ClassificationBadge({ type, large }) {
   const meta = TYPE_META[type] || TYPE_META.need
+  const glossary = TYPE_GLOSSARY[type] || ''
   return (
     <span
       className={'type-badge' + (large ? ' type-badge-lg' : '')}
       style={{ '--badge-color': meta.color }}
+      title={glossary}
+      aria-label={`Aid type: ${meta.label}. ${glossary}`}
+      role="img"
     >
       {meta.label}
     </span>
@@ -627,10 +702,25 @@ function Modal({ uni, onClose }) {
 
         {/* Body */}
         <div className="modal-body">
+          {/* Data correction notice */}
+          {uni.data_note && (
+            <div className="modal-correction" role="alert">
+              <span aria-hidden="true">🔁</span> {uni.data_note}
+            </div>
+          )}
+
           {/* Notes */}
           <div className="modal-notes">
             <p>{uni.notes}</p>
           </div>
+
+          {/* Last verified */}
+          {uni.last_verified && (
+            <p className="modal-verified">
+              <span aria-hidden="true">🗓</span>{' '}
+              Data last verified: <strong>{uni.last_verified}</strong>. Always confirm with official sources.
+            </p>
+          )}
 
           {/* Olympiad */}
           {uni.olympiad_bonus && uni.olympiad_bonus.length > 0 && (
@@ -664,48 +754,70 @@ function Modal({ uni, onClose }) {
 
 // ─── App ───────────────────────────────────────────────────────────
 
+const TYPE_FILTER_MAP = {
+  'Merit':       'merit',
+  'Need-Based':  'need',
+  'Merit + Need':'merit_need',
+  'Low Tuition': 'low_tuition',
+}
+
+function sortUniversities(list, sortBy) {
+  if (sortBy === 'default') return list
+  const sorted = [...list]
+  if (sortBy === 'acceptance_asc') sorted.sort((a, b) => a.acceptance_rate - b.acceptance_rate)
+  if (sortBy === 'acceptance_desc') sorted.sort((a, b) => b.acceptance_rate - a.acceptance_rate)
+  if (sortBy === 'name_asc') sorted.sort((a, b) => a.name.localeCompare(b.name))
+  if (sortBy === 'name_desc') sorted.sort((a, b) => b.name.localeCompare(a.name))
+  return sorted
+}
+
 export default function App() {
+  // Theme — persisted to localStorage
+  const [theme, setTheme] = useState(() => localStorage.getItem('fr-theme') || 'dark')
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('light', theme === 'light')
+    localStorage.setItem('fr-theme', theme)
+  }, [theme])
+
+  const toggleTheme = useCallback(() => setTheme(t => t === 'dark' ? 'light' : 'dark'), [])
+
   const [filters, setFilters] = useState({
     region: 'All',
     type: 'All',
     olympiadOnly: false,
     minGpa: 4.0,
+    search: '',
   })
+  const [sortBy, setSortBy] = useState('default')
   const [selectedUni, setSelectedUni] = useState(null)
   const [filterKey, setFilterKey] = useState(0)
 
   const filtered = useMemo(() => {
-    const TYPE_FILTER_MAP = {
-      'Merit':       'merit',
-      'Need-Based':  'need',
-      'Merit + Need':'merit_need',
-      'Low Tuition': 'low_tuition',
-    }
-    return universities.filter(u => {
+    const base = universities.filter(u => {
+      if (filters.search && !u.name.toLowerCase().includes(filters.search.toLowerCase())) return false
       if (filters.region !== 'All' && u.region !== filters.region) return false
       if (filters.type !== 'All' && getScholarshipType(u) !== TYPE_FILTER_MAP[filters.type]) return false
       if (filters.olympiadOnly && (!u.olympiad_bonus || u.olympiad_bonus.length === 0)) return false
       if (u.min_gpa > filters.minGpa) return false
       return true
     })
-  }, [filters])
+    return sortUniversities(base, sortBy)
+  }, [filters, sortBy])
 
-  // Bump filterKey on every filter change to retrigger card animations
-  useEffect(() => {
-    setFilterKey(k => k + 1)
-  }, [filters])
+  useEffect(() => { setFilterKey(k => k + 1) }, [filters, sortBy])
 
-  const onChange = (key, value) => setFilters(prev => ({ ...prev, [key]: value }))
+  const onChange = useCallback((key, value) => setFilters(prev => ({ ...prev, [key]: value })), [])
 
   return (
     <div className="app">
-      <Hero />
+      <Hero theme={theme} onToggleTheme={toggleTheme} />
       <Disclaimer />
       <div className="sticky-bar">
-        <FilterBar filters={filters} onChange={onChange} />
+        <FilterBar filters={filters} onChange={onChange} sortBy={sortBy} onSortChange={setSortBy} />
         <StatsBar universities={filtered} />
       </div>
-      <main className="main">
+      <main className="main" id="main-content">
         <UniversityGrid
           universities={filtered}
           onSelect={setSelectedUni}

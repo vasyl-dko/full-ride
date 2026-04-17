@@ -1,4 +1,4 @@
-/* ─── CSS Variables ─────────────────────────────────────────────── */
+/* ─── CSS Variables — Dark (default) ───────────────────────────── */
 :root {
   --bg: #0A0E17;
   --surface: #141921;
@@ -14,6 +14,30 @@
   --border-subtle: rgba(255, 255, 255, 0.06);
   --radius: 8px;
   --radius-lg: 12px;
+  --hero-glow-1: rgba(201, 168, 76, 0.08);
+  --hero-glow-2: rgba(201, 168, 76, 0.04);
+  --sticky-bg: rgba(10, 14, 23, 0.92);
+  --input-bg: var(--surface-2);
+}
+
+/* ─── Light Theme Overrides ─────────────────────────────────────── */
+html.light {
+  --bg: #F4F6FB;
+  --surface: #FFFFFF;
+  --surface-2: #EEF1F8;
+  --gold: #9B6F1A;
+  --gold-light: #7A5514;
+  --text: #1C2333;
+  --text-muted: #57606A;
+  --green: #1A7F37;
+  --amber: #9A6700;
+  --red: #CF222E;
+  --border: rgba(0, 0, 0, 0.12);
+  --border-subtle: rgba(0, 0, 0, 0.07);
+  --hero-glow-1: rgba(155, 111, 26, 0.06);
+  --hero-glow-2: rgba(155, 111, 26, 0.03);
+  --sticky-bg: rgba(244, 246, 251, 0.95);
+  --input-bg: #FFFFFF;
 }
 
 /* ─── Reset ─────────────────────────────────────────────────────── */
@@ -136,8 +160,8 @@ input[type="range"] {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(201, 168, 76, 0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 60%, rgba(201, 168, 76, 0.04) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 50% -10%, var(--hero-glow-1) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 60%, var(--hero-glow-2) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -218,7 +242,7 @@ input[type="range"] {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 14, 23, 0.92);
+  background: var(--sticky-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
@@ -1133,5 +1157,231 @@ input[type="range"] {
   .disclaimer {
     padding: 12px 16px;
     font-size: 12px;
+  }
+}
+
+/* ─── Theme Toggle ──────────────────────────────────────────────── */
+.hero-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ─── Search Input ──────────────────────────────────────────────── */
+.filter-group-search {
+  min-width: 180px;
+}
+
+.search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 9px;
+  font-size: 13px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.search-input {
+  width: 100%;
+  padding: 6px 30px 6px 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+  background: var(--input-bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  min-width: 160px;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.12);
+}
+
+.search-clear {
+  position: absolute;
+  right: 7px;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+.search-clear:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+/* ─── Sort Select ───────────────────────────────────────────────── */
+.sort-select {
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+  background: var(--input-bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238B949E' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 26px;
+}
+
+.sort-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.12);
+}
+
+html.light .sort-select option,
+html.light .sort-select {
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+/* ─── Filter label hint ─────────────────────────────────────────── */
+.filter-label-hint {
+  font-weight: 400;
+  opacity: 0.6;
+  font-size: 10px;
+}
+
+/* ─── Data correction notice in Modal ──────────────────────────── */
+.modal-correction {
+  background: rgba(248, 81, 73, 0.07);
+  border: 1px solid rgba(248, 81, 73, 0.25);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--red);
+  line-height: 1.6;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.modal-verified {
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.7;
+  margin-top: -8px;
+}
+
+/* ─── Focus visible ring for accessibility ──────────────────────── */
+.pill:focus-visible,
+.card-btn:focus-visible,
+.modal-close:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ─── Light mode card/surface adjustments ───────────────────────── */
+html.light .uni-card {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+html.light .uni-card:hover {
+  box-shadow:
+    0 0 0 1px rgba(155, 111, 26, 0.2),
+    0 8px 24px rgba(0,0,0,0.10);
+}
+
+html.light .funnel-bar-1 {
+  background: linear-gradient(90deg, rgba(100,116,139,0.35), rgba(100,116,139,0.15));
+}
+
+html.light .funnel-bar-2 {
+  background: linear-gradient(90deg, rgba(37,99,235,0.55), rgba(37,99,235,0.25));
+}
+
+html.light .funnel-bar-3 {
+  background: linear-gradient(90deg, rgba(155,111,26,0.7), rgba(155,111,26,0.35));
+}
+
+html.light .funnel-count {
+  color: rgba(0,0,0,0.55);
+}
+
+html.light .hero-title {
+  background: linear-gradient(135deg, var(--text) 40%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.light .olympiad-badge {
+  background: rgba(37,99,235,0.08);
+  border-color: rgba(37,99,235,0.2);
+  color: #1D4ED8;
+}
+
+html.light .modal-backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+html.light .modal-notes {
+  background: rgba(155, 111, 26, 0.05);
+}
+
+html.light .prob-estimator {
+  background: var(--surface-2);
+}
+
+@media (max-width: 640px) {
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+  }
+
+  .search-input {
+    min-width: 120px;
   }
 }
