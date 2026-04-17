@@ -624,6 +624,7 @@ function ProbabilityEstimator({ uni }) {
 
 function Modal({ uni, onClose }) {
   const backdropRef = useRef(null)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose() }
@@ -640,6 +641,24 @@ function Modal({ uni, onClose }) {
   const handleBackdrop = e => {
     if (e.target === backdropRef.current) onClose()
   }
+
+  const handleCopyLink = useCallback(() => {
+    const url = window.location.origin + window.location.pathname + '#' + uni.id
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }).catch(() => {
+      // Fallback for non-secure contexts
+      const ta = document.createElement('textarea')
+      ta.value = url
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }, [uni.id])
 
   const dataRows = [
     ['Country', uni.country],
@@ -697,18 +716,21 @@ function Modal({ uni, onClose }) {
               {uni.country} · {uni.region}
             </span>
           </div>
-          <ClassificationBadge type={getScholarshipType(uni)} large />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <button
+              className="modal-copy-link"
+              onClick={handleCopyLink}
+              aria-label="Copy shareable link"
+              title="Copy shareable link"
+            >
+              {copied ? '✓ Copied' : '🔗 Share'}
+            </button>
+            <ClassificationBadge type={getScholarshipType(uni)} large />
+          </div>
         </div>
 
         {/* Body */}
         <div className="modal-body">
-          {/* Data correction notice */}
-          {uni.data_note && (
-            <div className="modal-correction" role="alert">
-              <span aria-hidden="true">🔁</span> {uni.data_note}
-            </div>
-          )}
-
           {/* Notes */}
           <div className="modal-notes">
             <p>{uni.notes}</p>
@@ -771,6 +793,16 @@ function sortUniversities(list, sortBy) {
   return sorted
 }
 
+// ─── Hash routing helpers ──────────────────────────────────────────
+
+function getHashId() {
+  return window.location.hash.replace(/^#/, '').trim() || null
+}
+
+function findUniById(id) {
+  return universities.find(u => u.id === id) || null
+}
+
 export default function App() {
   // Theme — persisted to localStorage
   const [theme, setTheme] = useState(() => localStorage.getItem('fr-theme') || 'dark')
@@ -790,8 +822,29 @@ export default function App() {
     search: '',
   })
   const [sortBy, setSortBy] = useState('default')
-  const [selectedUni, setSelectedUni] = useState(null)
+
+  // Initialise from URL hash so direct links like /#mit open the modal immediately
+  const [selectedUni, setSelectedUni] = useState(() => findUniById(getHashId()))
   const [filterKey, setFilterKey] = useState(0)
+
+  // Keep URL hash in sync with open modal
+  useEffect(() => {
+    if (selectedUni) {
+      window.history.replaceState(null, '', '#' + selectedUni.id)
+    } else {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    }
+  }, [selectedUni])
+
+  // Handle browser back/forward navigation (popstate)
+  useEffect(() => {
+    const onPop = () => {
+      const uni = findUniById(getHashId())
+      setSelectedUni(uni)
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
 
   const filtered = useMemo(() => {
     const base = universities.filter(u => {
@@ -809,6 +862,16 @@ export default function App() {
 
   const onChange = useCallback((key, value) => setFilters(prev => ({ ...prev, [key]: value })), [])
 
+  // Push a history entry when opening a card so back-button closes the modal
+  const handleSelect = useCallback(uni => {
+    window.history.pushState(null, '', '#' + uni.id)
+    setSelectedUni(uni)
+  }, [])
+
+  const handleClose = useCallback(() => {
+    setSelectedUni(null)
+  }, [])
+
   return (
     <div className="app">
       <Hero theme={theme} onToggleTheme={toggleTheme} />
@@ -820,13 +883,13 @@ export default function App() {
       <main className="main" id="main-content">
         <UniversityGrid
           universities={filtered}
-          onSelect={setSelectedUni}
+          onSelect={handleSelect}
           filterKey={filterKey}
         />
       </main>
       <Footer />
       {selectedUni && (
-        <Modal uni={selectedUni} onClose={() => setSelectedUni(null)} />
+        <Modal uni={selectedUni} onClose={handleClose} />
       )}
     </div>
   )
